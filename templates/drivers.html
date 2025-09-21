@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Drivers</h2>
+<div class="grid">
+	<section>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Phone</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for dr in drivers %}
+				<tr>
+					<td>{{ dr.name }}</td>
+					<td>{{ dr.phone }}</td>
+				</tr>
+				{% else %}
+				<tr><td colspan="2">No drivers.</td></tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</section>
+	<section>
+		<h3>Add Driver</h3>
+		<form method="post" action="{{ url_for('drivers_create') }}" class="form">
+			<label>Name
+				<input type="text" name="name" required>
+			</label>
+			<label>Phone
+				<input type="text" name="phone">
+			</label>
+			<div class="form-actions">
+				<button class="btn" type="submit">Add</button>
+				<a class="btn secondary" href="{{ url_for('index') }}">Back</a>
+			</div>
+		</form>
+	</section>
+</div>
+{% endblock %}

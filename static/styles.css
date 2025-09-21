@@ -1,0 +1,55 @@
+:root {
+	--bg: #0f172a;
+	--panel: #111827;
+	--text: #e5e7eb;
+	--muted: #9ca3af;
+	--primary: #2563eb;
+	--secondary: #374151;
+	--success: #16a34a;
+	--warning: #d97706;
+	--danger: #dc2626;
+	--border: #1f2937;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background: var(--bg); color: var(--text); }
+
+a { color: inherit; text-decoration: none; }
+
+.site-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; background: var(--panel); border-bottom: 1px solid var(--border); }
+.site-header h1 { font-size: 20px; margin: 0; }
+
+.container { padding: 24px; }
+
+.grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.table th { color: var(--muted); font-weight: 600; }
+
+.btn { display: inline-block; padding: 8px 12px; background: var(--primary); color: white; border-radius: 6px; cursor: pointer; }
+.btn.secondary { background: var(--secondary); }
+
+.flash-list { list-style: none; padding: 0; margin: 0 0 16px; }
+.flash { padding: 10px 12px; border-radius: 6px; margin-bottom: 8px; }
+.flash.success { background: rgba(22,163,74,.15); border: 1px solid rgba(22,163,74,.35); }
+.flash.error { background: rgba(220,38,38,.15); border: 1px solid rgba(220,38,38,.35); }
+
+.notifications { list-style: none; padding: 0; margin: 12px 0 0; }
+.note { padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 8px; background: var(--panel); }
+.note.unread { border-color: var(--primary); }
+.note-time { color: var(--muted); }
+
+.badge { padding: 4px 8px; border-radius: 999px; background: var(--secondary); }
+.status-pending { background: #334155; }
+.status-out-for-delivery { background: #1e40af; }
+.status-delivered { background: #065f46; }
+.status-failed { background: #7f1d1d; }
+
+.form { display: grid; gap: 12px; max-width: 560px; }
+.form.inline { grid-auto-flow: column; align-items: center; gap: 8px; max-width: none; }
+.form label { display: grid; gap: 6px; }
+.form input, .form select { padding: 8px 10px; background: #0b1220; border: 1px solid var(--border); color: var(--text); border-radius: 6px; }
+.form-actions { display: flex; gap: 8px; }
+
+.card { padding: 12px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; }

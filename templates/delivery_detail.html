@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Delivery {{ delivery.order_number }}</h2>
+<div class="card">
+	<p><strong>Customer:</strong> {{ delivery.customer_name }}</p>
+	<p><strong>Address:</strong> {{ delivery.address }}</p>
+	<p><strong>Status:</strong> <span class="badge status-{{ delivery.status|lower|replace(' ', '-') }}">{{ delivery.status }}</span></p>
+	<p><strong>Driver:</strong> {{ delivery.driver_name }}</p>
+	<p><strong>Updated:</strong> {{ delivery.updated_at }}</p>
+</div>
+
+<h3>Update Status</h3>
+<form method="post" action="{{ url_for('update_status', delivery_id=delivery.id) }}" class="form inline">
+	<select name="status" required>
+		{% for s in ['Pending','Out for Delivery','Delivered','Failed'] %}
+			<option value="{{ s }}" {% if s == delivery.status %}selected{% endif %}>{{ s }}</option>
+		{% endfor %}
+	</select>
+	<button class="btn" type="submit">Update</button>
+	<a class="btn secondary" href="{{ url_for('index') }}">Back</a>
+</form>
+{% endblock %}

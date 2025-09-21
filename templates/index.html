@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="grid">
+	<section>
+		<h2>Deliveries</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Order</th>
+					<th>Customer</th>
+					<th>Address</th>
+					<th>Status</th>
+					<th>Driver</th>
+					<th>Updated</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for d in deliveries %}
+				<tr>
+					<td>{{ d.order_number }}</td>
+					<td>{{ d.customer_name }}</td>
+					<td>{{ d.address }}</td>
+					<td><span class="badge status-{{ d.status|lower|replace(' ', '-') }}">{{ d.status }}</span></td>
+					<td>{{ d.driver_name }}</td>
+					<td>{{ d.updated_at }}</td>
+					<td><a class="btn" href="{{ url_for('delivery_detail', delivery_id=d.id) }}">View</a></td>
+				</tr>
+				{% else %}
+				<tr><td colspan="7">No deliveries yet.</td></tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</section>
+	<section>
+		<h2>Notifications</h2>
+		<form method="post" action="{{ url_for('mark_notifications_read') }}">
+			<button class="btn secondary" type="submit">Mark all read</button>
+		</form>
+		<ul class="notifications">
+			{% for n in notifications %}
+				<li class="note{% if not n.is_read %} unread{% endif %}">
+					<div class="note-message">{{ n.message }}</div>
+					<small class="note-time">{{ n.created_at }}</small>
+				</li>
+			{% else %}
+				<li>No notifications.</li>
+			{% endfor %}
+		</ul>
+	</section>
+</div>
+{% endblock %}

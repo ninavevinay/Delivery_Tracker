@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Create Delivery</h2>
+<form method="post" class="form">
+	<label>Order Number
+		<input type="text" name="order_number" required>
+	</label>
+	<label>Customer Name
+		<input type="text" name="customer_name" required>
+	</label>
+	<label>Address
+		<input type="text" name="address" required>
+	</label>
+	<label>Estimated Delivery (optional)
+		<input type="datetime-local" name="estimated_delivery">
+	</label>
+	<label>Driver (optional)
+		<select name="driver_id">
+			<option value="">-- Unassigned --</option>
+			{% for dr in drivers %}
+				<option value="{{ dr.id }}">{{ dr.name }}</option>
+			{% endfor %}
+		</select>
+	</label>
+	<div class="form-actions">
+		<button class="btn" type="submit">Create</button>
+		<a class="btn secondary" href="{{ url_for('index') }}">Cancel</a>
+	</div>
+</form>
+{% endblock %}
